@@ -5,4 +5,4 @@ day_in_week={'monday':'1day','tuesday':'2day',\
           'friday':'5day','saturday':'6day',\
           'sunday':'1day'}
 
-week_list = {'even': 1,'odd': 2}
+week_list = {'even': 1,'odd': 2,'both': 0}
