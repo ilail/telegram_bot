@@ -43,10 +43,8 @@ def get_schedule(web_page, day):
 
 def week_and_day(week_n, day_n):
     week = 1 if week_n % 2 else 2
-    day = '1day' if '7day' else day_n
-    if day_n == '7day' and week == 1:
-        week = 2
-    else: week = 1
+    day = '1day' if day_n == '7day' else day_n
+    week = 2 if (day_n == '7day' and week == 1) else 1
     return week, day
 
 
