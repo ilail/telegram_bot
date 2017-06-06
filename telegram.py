@@ -70,8 +70,8 @@ def get_exact_day(message):
 @bot.message_handler(commands=['tomorrow'])
 def get_tomorrow(message):
     _, group = message.text.split()
-    n = datetime.now().isocalendar()  #(0-2017,week-22,day-7)
-    tomorrow = week_and_day(n[1], str(n[2])+'day')
+    n = datetime.isocalendar(datetime.today())    #n = datetime.now().isocalendar()  #(0-2017,week-22,day-7)
+    tomorrow = week_and_day(n[1], str(n[2]+1) + 'day')
     week, day = tomorrow[0], tomorrow[1]
     web_page = get_page(group, week)
     times_list, locations_list, lessons_list, hall_list = get_schedule(web_page, day)
