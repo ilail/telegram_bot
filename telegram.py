@@ -1,11 +1,12 @@
-import requests
-from bs4 import BeautifulSoup
 import config
+import html5lib
+import requests
 import telebot
 from datetime import datetime, time, date
-import html5lib
+from bs4 import BeautifulSoup
 
 
+# make a mistake in input -> RIP bot D:
 bot = telebot.TeleBot(config.access_token)
 
 
@@ -102,7 +103,7 @@ def get_all_week(message):
     bot.send_message(message.chat.id, resp, parse_mode='HTML')
   
 
-@bot.message_handler(commands=['near_lesson'])
+@bot.message_handler(commands=['soon'])
 def get_near_lesson(message):
     _, group = message.text.split()
     date = datetime.now().isocalendar()
@@ -112,7 +113,7 @@ def get_near_lesson(message):
     web_page = get_page(group, week)
     times_list, locations_list, lessons_list, hall_list = get_schedule(web_page, day)
     resp = ''
-    resp += "<b>Время: {}</b>\n<Пара: \n".format(current_time)
+    resp += "<b>Время: {}</b>\n<Занятие: \n".format(current_time)
     for time, location, lesson, hall in zip(times_list, locations_list, lessons_list, hall_list):
         try:
             class_time = datetime.strftime(datetime.strptime(time[:4],"%H:%M"),"%H:%M")
