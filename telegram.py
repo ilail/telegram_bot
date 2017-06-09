@@ -91,11 +91,11 @@ def get_tomorrow(message):
     try:
         web_page = get_page(group, week)
         times_list, locations_list, lessons_list, hall_list = get_schedule(web_page, day)
-	    resp = ''
-	    for time, location, lesson, hall in zip(times_list, locations_list, lessons_list, hall_list):
-	        resp += '<b>{}, {},</b> {}, {}\n'.format(time, hall, location, lesson)
-	except:
-		resp = 'Занятий завтра нет.'
+        resp = ''
+        for time, location, lesson, hall in zip(times_list, locations_list, lessons_list, hall_list):
+            resp += '<b>{}, {},</b> {}, {}\n'.format(time, hall, location, lesson)
+    except:
+        resp = 'Занятий завтра нет.'
     bot.send_message(message.chat.id, resp, parse_mode='HTML')
 
 
