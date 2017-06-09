@@ -24,6 +24,7 @@ def get_page(group, week=''):
 
 def get_schedule(web_page, day):
     soup = BeautifulSoup(web_page, "html5lib")
+    # Методы find и find_all позволяют найти теги с указанными атрибутами.
     schedule_table = soup.find("table", attrs={"id": day})
     # Время проведения занятий
     times_list = schedule_table.find_all("td", attrs={"class": "time"})
@@ -138,8 +139,8 @@ def get_near_lesson(message):
         	# times_list = schedule_table.find_all("td", attrs={"class": "time"})... >
         	# from the data on the page (...<td class="time"><span>13:30-15:00</span>...)
         	# then format the datetime object back to a string by use of the same format string.
-        	# ! time[:4] - slicing a string. We get the first 5 chars in a string (start time of lesson).
-            class_time = datetime.strftime(datetime.strptime(time[:5],"%H:%M"),"%H:%M")
+        	# ! time[:4] - slicing a string. We get the first 4 chars in a string (start time of lesson).
+            class_time = datetime.strftime(datetime.strptime(time[:4],"%H:%M"),"%H:%M")
             if class_time > current_time:
                 resp += '<b>{}, {},</b> {}, {}\n'.format(time, hall, location, lesson)
                 break
