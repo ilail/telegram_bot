@@ -1,4 +1,4 @@
-access_token = '388897006:AAHs8b6GNe5418RQycZG2eMHn40131VxIgY'
+access_token = '397615783:AAG6h-Wsif2AeTulppudS8f8FVoIuTIew9g'
 
 domain = 'http://www.ifmo.ru/ru/schedule/0'
 
