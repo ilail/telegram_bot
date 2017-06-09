@@ -88,11 +88,14 @@ def get_tomorrow(message):
     today = datetime.now().isocalendar()  # ([0]2017,[1]week-22,[2]day-7)
     tomorrow = week_and_day(today[1], str(today[2]+1) + 'day')  # tuple (номер недели, номер завтрашнего дня + 'day')
     week, day = tomorrow[0], tomorrow[1]
-    web_page = get_page(group, week)
-    times_list, locations_list, lessons_list, hall_list = get_schedule(web_page, day)
-    resp = ''
-    for time, location, lesson, hall in zip(times_list, locations_list, lessons_list, hall_list):
-        resp += '<b>{}, {},</b> {}, {}\n'.format(time, hall, location, lesson)
+    try:
+        web_page = get_page(group, week)
+        times_list, locations_list, lessons_list, hall_list = get_schedule(web_page, day)
+	    resp = ''
+	    for time, location, lesson, hall in zip(times_list, locations_list, lessons_list, hall_list):
+	        resp += '<b>{}, {},</b> {}, {}\n'.format(time, hall, location, lesson)
+	except:
+		resp = 'Занятий завтра нет.'
     bot.send_message(message.chat.id, resp, parse_mode='HTML')
 
 
